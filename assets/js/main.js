@@ -58,19 +58,19 @@ const posts = [
     }
 ];
 
-posts.forEach((element, index) => {
+posts.forEach(element => {
 
     containerPosts.innerHTML += `
     
-    <div id="${element.id}" class="post">
+    <div class="post">
         <div class="post__header">
             <div class="post-meta">
                 <div class="post-meta__icon">
-                    <img class="profile-pic" src="${element.author.image}" alt="Phil Mangione">
+                    <img class="profile-pic" src="${element.author.image}" alt="${element.author.name}">
                 </div>
                 <div class="post-meta__data">
                     <div class="post-meta__author">${element.author.name}</div>
-                    <div class="post-meta__time">4 mesi fa</div>
+                    <div class="post-meta__time">${reverseDate(element.created)}</div>
                 </div>
             </div>
         </div>
@@ -81,18 +81,64 @@ posts.forEach((element, index) => {
         <div class="post__footer">
             <div class="likes js-likes">
                 <div class="likes__cta">
-                    <a class="like-button  js-like-button" href="#" data-postid="1">
+                    <a class="like-button  js-like-button" data-postid="${element.id}">
                         <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
                         <span class="like-button__label">Mi Piace</span>
                     </a>
                 </div>
                 <div class="likes__counter">
-                    Piace a <b id="like-counter-${index}" class="js-likes-counter">${element.likes}</b> persone
+                    Piace a <b id="like-counter-${element.id}" class="js-likes-counter">${element.likes}</b> persone
                 </div>
             </div>
         </div>
     </div>
     
     `
+
 });
+
+let likedPosts = [];
+
+function reverseDate(inputDate) {
+
+    const parts = inputDate.split('-');
+
+    const reversedDate = parts.reverse().join('-');
+
+    return reversedDate;
+}
+
+const likeButtons = document.querySelectorAll('.js-like-button');
+const likeCounters = document.querySelectorAll('.js-likes-counter');
+console.log(likeButtons);
+console.log(likeCounters);
+
+likeButtons.forEach((element, index) => {
+
+    element.addEventListener('click', function () {
+
+        console.log(`Hai cliccato il bottone nel post ${index + 1}`)
+
+        this.classList.toggle("like-button--liked")
+
+        let postIndex = likedPosts.indexOf(posts[index].id)
+
+
+        if (this.classList.contains("like-button--liked")) {
+
+            likeCounters[index].innerText = +likeCounters[index].innerText + 1;
+            likedPosts.push(posts[index].id)
+
+        } else {
+
+            likeCounters[index].innerText = +likeCounters[index].innerText - 1;
+            likedPosts.splice(postIndex, 1)
+        }
+
+        console.log(likedPosts)
+    })
+
+
+});
+
 
