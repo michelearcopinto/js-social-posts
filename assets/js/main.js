@@ -60,13 +60,24 @@ const posts = [
 
 posts.forEach(element => {
 
+    let tag;
+
+    if (element.author.image === null) {
+
+        tag = `<h1 class="profile-pic" alt="${element.author.name}">LF</h1>`
+
+    } else {
+
+        tag = `<img class="profile-pic" src="${element.author.image}" alt="${element.author.name}"></img>`
+    }
+
     containerPosts.innerHTML += `
     
     <div class="post">
         <div class="post__header">
             <div class="post-meta">
                 <div class="post-meta__icon">
-                    <img class="profile-pic" src="${element.author.image}" alt="${element.author.name}">
+                    ${tag}
                 </div>
                 <div class="post-meta__data">
                     <div class="post-meta__author">${element.author.name}</div>
@@ -123,7 +134,6 @@ likeButtons.forEach((element, index) => {
 
         let postIndex = likedPosts.indexOf(posts[index].id)
 
-
         if (this.classList.contains("like-button--liked")) {
 
             likeCounters[index].innerText = +likeCounters[index].innerText + 1;
@@ -137,8 +147,4 @@ likeButtons.forEach((element, index) => {
 
         console.log(likedPosts)
     })
-
-
 });
-
-

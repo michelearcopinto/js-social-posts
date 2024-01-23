@@ -11,7 +11,7 @@ body {
     font-size: 100%;
 }
 
-h1 {
+body>h1 {
     font-size: calc(1.5rem + 2vw);
     color: white;
 }
@@ -64,7 +64,11 @@ h1 {
 
 .profile-pic {
     border-radius: 50%;
-    max-width: 60px;
+    width: 60px;
+    background-color: salmon;
+    aspect-ratio: 1;
+    text-align: center;
+    line-height: 60px;
 }
 
 .profile-pic-default {
