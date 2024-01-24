@@ -65,10 +65,6 @@ body>h1 {
 .profile-pic {
     border-radius: 50%;
     width: 60px;
-    background-color: salmon;
-    aspect-ratio: 1;
-    text-align: center;
-    line-height: 60px;
 }
 
 .profile-pic-default {

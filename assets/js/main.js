@@ -64,7 +64,7 @@ posts.forEach(element => {
 
     if (element.author.image === null) {
 
-        tag = `<h1 class="profile-pic" alt="${element.author.name}">LF</h1>`
+        tag = `<h1 class="profile-pic-default" alt="${element.author.name}">LF</h1>`
 
     } else {
 
@@ -114,7 +114,7 @@ function reverseDate(inputDate) {
 
     const parts = inputDate.split('-');
 
-    const reversedDate = parts.reverse().join('-');
+    const reversedDate = parts.reverse().join('/');
 
     return reversedDate;
 }
